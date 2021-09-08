@@ -42,6 +42,7 @@ BOOST_FIXTURE_TEST_SUITE( elasticsearch_tests, database_fixture )
 
 BOOST_AUTO_TEST_CASE(elasticsearch_account_history) {
    try {
+      BOOST_TEST_MESSAGE( "GoodWien comment" );
 
       CURL *curl; // curl handler
       curl = curl_easy_init();
