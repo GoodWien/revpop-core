@@ -61,11 +61,19 @@ add_library( graphene_protocol_custom_auths ${CUSTOM_AUTHS_FILES} ${CUSTOM_AUTHS
 target_link_libraries( graphene_protocol_custom_auths fc )
 target_include_directories( graphene_protocol_custom_auths PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" )
 
+set( GRAPHENE_PROTOCOL_BIG_FILES
+     custom_authorities/list_1.cpp
+     custom_authorities/list_2.cpp
+   )
+
 if( MSVC )
    set_source_files_properties( ${CUSTOM_AUTHS_FILES} ${SOURCES} PROPERTIES COMPILE_FLAGS /bigobj )
 else( MSVC )
    if( MINGW )
-      set_source_files_properties( ${CUSTOM_AUTHS_FILES} ${SOURCES} PROPERTIES COMPILE_FLAGS -Os -Wa,-mbig-obj )
+      set_source_files_properties( ${CUSTOM_AUTHS_FILES} ${SOURCES} PROPERTIES COMPILE_FLAGS -Wa,-mbig-obj )
+      set_source_files_properties( ${GRAPHENE_PROTOCOL_BIG_FILES} PROPERTIES COMPILE_FLAGS -Os )
+      set_source_files_properties( ${GRAPHENE_PROTOCOL_BIG_FILES} PROPERTIES LINK_FLAGS -Os )
+      set_source_files_properties( ${GRAPHENE_PROTOCOL_BIG_FILES} PROPERTIES STATIC_LIBRARY_FLAGS -Os )
    endif( MINGW )
 endif( MSVC )
 
