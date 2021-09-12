@@ -65,7 +65,7 @@ if( MSVC )
    set_source_files_properties( ${CUSTOM_AUTHS_FILES} ${SOURCES} PROPERTIES COMPILE_FLAGS /bigobj )
 else( MSVC )
    if( MINGW )
-      set_source_files_properties( ${CUSTOM_AUTHS_FILES} ${SOURCES} PROPERTIES COMPILE_FLAGS -Wa,-mbig-obj )
+      set_source_files_properties( ${CUSTOM_AUTHS_FILES} ${SOURCES} PROPERTIES COMPILE_FLAGS -Os -Wa,-mbig-obj )
    endif( MINGW )
 endif( MSVC )
 
